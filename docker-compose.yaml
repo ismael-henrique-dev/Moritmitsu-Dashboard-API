@@ -18,18 +18,18 @@ services:
     networks:
       - morimitsu-api-network
 
-  morimitsu-api:
-    container_name: morimitsu-api
-    build: .
-    # image: ism4el/morimitsu-api
-    env_file:
-      - ./config/api.env
-    ports:
-      - '5000:5000'
-    depends_on:
-      - morimitsu-db
-    networks:
-      - morimitsu-api-network
+  # morimitsu-api:
+  #   container_name: morimitsu-api
+  #   build: .
+  #   # image: ism4el/morimitsu-api
+  #   env_file:
+  #     - ./config/api.env
+  #   ports:
+  #     - '5000:5000'
+  #   depends_on:
+  #     - morimitsu-db
+  #   networks:
+  #     - morimitsu-api-network
 
 volumes:
   morimitsu-db-data:

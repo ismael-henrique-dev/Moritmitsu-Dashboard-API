@@ -2,3 +2,6 @@
 
 api.env
 db.env
+generated
+
+/package-lock.json
