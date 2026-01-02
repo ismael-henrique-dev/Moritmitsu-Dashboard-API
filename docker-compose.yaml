@@ -1,0 +1,35 @@
+version: '3.9'
+
+networks:
+  morimitsu-api-network:
+    driver: 'bridge'
+
+services:
+  morimitsu-db:
+    container_name: morimitsu-db
+    image: postgres:17
+    restart: always
+    env_file:
+      - ./config/db.env
+    ports:
+      - '5432:5432'
+    volumes:
+      - morimitsu-db-data:/var/lib/postgresql/data
+    networks:
+      - morimitsu-api-network
+
+  morimitsu-api:
+    container_name: morimitsu-api
+    build: .
+    # image: ism4el/morimitsu-api
+    env_file:
+      - ./config/api.env
+    ports:
+      - '5000:5000'
+    depends_on:
+      - morimitsu-db
+    networks:
+      - morimitsu-api-network
+
+volumes:
+  morimitsu-db-data:
